@@ -2,10 +2,10 @@ package com.caesarcipher;
 
 import java.io.*;
 
-import static com.caesarcipher.CaesarCipher.ALPHABET;
-
 public class BruteForce {
-    static void bruteForce(String filePath) throws IOException {
+    void bruteForce(String filePath) throws IOException {
+        CaesarCipher caesarCipher = new CaesarCipher();
+        String alphabet = caesarCipher.ALPHABET;
         FileInputStream inputStream = null;
         FileOutputStream outputStream = null;
 
@@ -16,7 +16,7 @@ public class BruteForce {
             int bestKey = -1;
             double bestScore = Double.MIN_VALUE;
 
-            for (int key = 0; key < ALPHABET.length(); key++) {
+            for (int key = 0; key < alphabet.length(); key++) {
                 byte[] decryptedBytes = decryptBytes(encryptedBytes, key);
                 String decryptedText = new String(decryptedBytes);
 
@@ -45,7 +45,7 @@ public class BruteForce {
         }
     }
 
-    private static byte[] readBytesFromFile(InputStream inputStream) throws IOException {
+    private byte[] readBytesFromFile(InputStream inputStream) throws IOException {
         ByteArrayOutputStream buffer = new ByteArrayOutputStream();
         int bytesRead;
         byte[] data = new byte[1024];
@@ -58,7 +58,7 @@ public class BruteForce {
         return buffer.toByteArray();
     }
 
-    private static byte[] decryptBytes(byte[] data, int key) {
+    private byte[] decryptBytes(byte[] data, int key) {
         byte[] decryptedBytes = new byte[data.length];
         for (int i = 0; i < data.length; i++) {
             decryptedBytes[i] = (byte) (data[i] - key);
@@ -66,7 +66,7 @@ public class BruteForce {
         return decryptedBytes;
     }
 
-    private static double calculateScore(String text) {
+    private double calculateScore(String text) {
         int eCount = 0;
         for (char c : text.toCharArray()) {
             if (c == 'e' || c == 'E') {
@@ -74,4 +74,5 @@ public class BruteForce {
             }
         }
         return (double) eCount / text.length();
-    }}
+    }
+}

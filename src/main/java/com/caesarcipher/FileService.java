@@ -4,11 +4,8 @@ import java.io.FileInputStream;
 import java.io.FileOutputStream;
 import java.io.IOException;
 
-import static com.caesarcipher.CaesarCipher.decryptChar;
-import static com.caesarcipher.CaesarCipher.encryptChar;
-
 public class FileService {
-    static void encryptFile(String filePath, int key) throws IOException {
+    protected void encryptFile(String filePath, int key) throws IOException {
         FileInputStream inputStream = null;
         FileOutputStream outputStream = null;
 
@@ -19,7 +16,8 @@ public class FileService {
             int bytesRead;
             while ((bytesRead = inputStream.read()) != -1) {
                 char originalChar = (char) bytesRead;
-                char encryptedChar = encryptChar(originalChar, key);
+                CaesarCipher caesarCipher = new CaesarCipher();
+                char encryptedChar = caesarCipher.encryptChar(originalChar, key);
                 outputStream.write((int) encryptedChar);
             }
         } finally {
@@ -32,7 +30,7 @@ public class FileService {
         }
     }
 
-    static void decryptFile(String filePath, int key) throws IOException {
+    protected void decryptFile(String filePath, int key) throws IOException {
         FileInputStream inputStream = null;
         FileOutputStream outputStream = null;
 
@@ -43,7 +41,8 @@ public class FileService {
             int bytesRead;
             while ((bytesRead = inputStream.read()) != -1) {
                 char encryptedChar = (char) bytesRead;
-                char decryptedChar = decryptChar(encryptedChar, key);
+                CaesarCipher caesarCipher = new CaesarCipher();
+                char decryptedChar = caesarCipher.decryptChar(encryptedChar, key);
                 outputStream.write((int) decryptedChar);
             }
         } finally {

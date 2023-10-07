@@ -4,12 +4,9 @@ import java.io.IOException;
 import java.util.InputMismatchException;
 import java.util.Scanner;
 
-import static com.caesarcipher.BruteForce.bruteForce;
-import static com.caesarcipher.FileService.decryptFile;
-import static com.caesarcipher.FileService.encryptFile;
-
 public class Cli {
-    static void cli() {
+    protected void cli() {
+        FileService fileService = new FileService();
         Scanner scanner = new Scanner(System.in);
         System.out.println("Enter command (ENCRYPT/DECRYPT/BRUTE_FORCE):");
         String command = scanner.nextLine();
@@ -21,12 +18,13 @@ public class Cli {
                 System.out.println("Enter key:");
                 int key = scanner.nextInt();
                 if ("ENCRYPT".equalsIgnoreCase(command)) {
-                    encryptFile(filePath, key);
+                    fileService.encryptFile(filePath, key);
                 } else {
-                    decryptFile(filePath, key);
+                    fileService.decryptFile(filePath, key);
                 }
             } else if ("BRUTE_FORCE".equalsIgnoreCase(command)) {
-                bruteForce(filePath);
+                BruteForce bruteForces = new BruteForce();
+                bruteForces.bruteForce(filePath);
             } else {
                 System.out.println("Invalid command.");
             }
