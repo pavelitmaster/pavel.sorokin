@@ -2,8 +2,6 @@ package com.caesarcipher;
 
 import java.io.*;
 
-
-
 public class BruteForce {
     void bruteForce(String filePath) throws IOException {
         CaesarCipher caesarCipher = new CaesarCipher();
@@ -47,7 +45,7 @@ public class BruteForce {
         }
     }
 
-    private static byte[] readBytesFromFile(InputStream inputStream) throws IOException {
+    private byte[] readBytesFromFile(InputStream inputStream) throws IOException {
         ByteArrayOutputStream buffer = new ByteArrayOutputStream();
         int bytesRead;
         byte[] data = new byte[1024];
@@ -60,7 +58,7 @@ public class BruteForce {
         return buffer.toByteArray();
     }
 
-    private static byte[] decryptBytes(byte[] data, int key) {
+    private byte[] decryptBytes(byte[] data, int key) {
         byte[] decryptedBytes = new byte[data.length];
         for (int i = 0; i < data.length; i++) {
             decryptedBytes[i] = (byte) (data[i] - key);
@@ -68,7 +66,7 @@ public class BruteForce {
         return decryptedBytes;
     }
 
-    private static double calculateScore(String text) {
+    private double calculateScore(String text) {
         int eCount = 0;
         for (char c : text.toCharArray()) {
             if (c == 'e' || c == 'E') {
@@ -76,4 +74,5 @@ public class BruteForce {
             }
         }
         return (double) eCount / text.length();
-    }}
+    }
+}
