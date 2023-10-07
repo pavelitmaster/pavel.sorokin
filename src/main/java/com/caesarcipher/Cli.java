@@ -4,7 +4,7 @@ import java.io.IOException;
 import java.util.InputMismatchException;
 import java.util.Scanner;
 
-import static com.caesarcipher.BruteForce.bruteForce;
+// import com.caesarcipher.BruteForce.bruteForce;
 import static com.caesarcipher.FileService.decryptFile;
 import static com.caesarcipher.FileService.encryptFile;
 
@@ -26,7 +26,9 @@ public class Cli {
                     decryptFile(filePath, key);
                 }
             } else if ("BRUTE_FORCE".equalsIgnoreCase(command)) {
-                bruteForce(filePath);
+                BruteForce bruteForces = new BruteForce();
+                bruteForces.bruteForce(filePath);
+               // bruteForce(filePath);
             } else {
                 System.out.println("Invalid command.");
             }

@@ -2,10 +2,12 @@ package com.caesarcipher;
 
 import java.io.*;
 
-import static com.caesarcipher.CaesarCipher.ALPHABET;
+
 
 public class BruteForce {
-    static void bruteForce(String filePath) throws IOException {
+    void bruteForce(String filePath) throws IOException {
+        CaesarCipher caesarCipher = new CaesarCipher();
+        String alphabet = caesarCipher.ALPHABET;
         FileInputStream inputStream = null;
         FileOutputStream outputStream = null;
 
@@ -16,7 +18,7 @@ public class BruteForce {
             int bestKey = -1;
             double bestScore = Double.MIN_VALUE;
 
-            for (int key = 0; key < ALPHABET.length(); key++) {
+            for (int key = 0; key < alphabet.length(); key++) {
                 byte[] decryptedBytes = decryptBytes(encryptedBytes, key);
                 String decryptedText = new String(decryptedBytes);
 
