@@ -5,7 +5,7 @@ import java.util.InputMismatchException;
 import java.util.Scanner;
 
 public class Cli {
-    protected void cli() {
+    void cli() {
         FileService fileService = new FileService();
         Scanner scanner = new Scanner(System.in);
         System.out.println("Enter command (ENCRYPT/DECRYPT/BRUTE_FORCE):");
