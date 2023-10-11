@@ -1,23 +1,23 @@
 package com.caesarcipher;
 
 public class CaesarCipher {
-    final String ALPHABET = "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz.,«»\"':!? ";
+    final String alphabetEu = "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz.,«»\"':!? ";
 
-    protected char encryptChar(char character, int key) {
-        int index = ALPHABET.indexOf(character);
+    char encryptChar(char character, int key) {
+        int index = alphabetEu.indexOf(character);
         if (index != -1) {
-            int newIndex = (index + key) % ALPHABET.length();
-            return ALPHABET.charAt(newIndex);
+            int newIndex = (index + key) % alphabetEu.length();
+            return alphabetEu.charAt(newIndex);
         } else {
             return character;
         }
     }
 
-    protected char decryptChar(char character, int key) {
-        int index = ALPHABET.indexOf(character);
+    char decryptChar(char character, int key) {
+        int index = alphabetEu.indexOf(character);
         if (index != -1) {
-            int newIndex = (index - key + ALPHABET.length()) % ALPHABET.length();
-            return ALPHABET.charAt(newIndex);
+            int newIndex = (index - key + alphabetEu.length()) % alphabetEu.length();
+            return alphabetEu.charAt(newIndex);
         } else {
             return character;
         }
